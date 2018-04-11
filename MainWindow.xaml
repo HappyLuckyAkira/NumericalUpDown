@@ -1,0 +1,17 @@
+﻿<Window x:Class="NumericalUpDownSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NumericalUpDownSample"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <xctk:IntegerUpDown x:Name="IntegerUpDown1" 
+                             Value="1564" HorizontalAlignment="Left" Margin="24,23,0,0" VerticalAlignment="Top" Width="126"/>
+
+        <xctk:DoubleUpDown Value="0.1" Increment="0.1" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top" Width="126"/>
+
+    </Grid>
+</Window>
