@@ -40,22 +40,27 @@ namespace NumericalUpDownSample
             // イベントを登録・削除 
             integerUpDown.PreviewTextInput -= OnPreviewTextInput;
             DataObject.RemovePastingHandler(integerUpDown, textbox_PastingHandler);
+            integerUpDown.Loaded -= IntegerUpDown_Loaded;
             
             var newValue = (bool)e.NewValue;
             if (newValue)
             {
+                integerUpDown.Loaded += IntegerUpDown_Loaded;
                 integerUpDown.PreviewTextInput += OnPreviewTextInput;
                 DataObject.AddPastingHandler(integerUpDown, textbox_PastingHandler);
-
-                var textBox = integerUpDown.FindName("PART_TextBox") as WatermarkTextBox;
-                if (null != textBox)
-                {
-                    InputMethod.SetIsInputMethodSuspended(textBox, true);
-                }
-
             }
         }
 
+        private static void IntegerUpDown_Loaded(object sender, RoutedEventArgs e)
+        {
+            var integerUpDown = sender as IntegerUpDown;
+            var textBox = integerUpDown.Template.FindName("PART_TextBox", integerUpDown) as WatermarkTextBox;
+            //var textBox = integerUpDown.FindName("PART_TextBox") as WatermarkTextBox;
+            if (null != textBox)
+            {
+                InputMethod.SetIsInputMethodSuspended(textBox, true);
+            }
+        }
 
         private static bool IsAllNumber(string text)
         {
