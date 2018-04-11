@@ -9,6 +9,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <xctk:IntegerUpDown x:Name="IntegerUpDown1" 
+                            local:IntegerUpDownBehaviors.IsNumeric="True"
                              Value="1564" HorizontalAlignment="Left" Margin="24,23,0,0" VerticalAlignment="Top" Width="126"/>
 
         <xctk:DoubleUpDown Value="0.1" Increment="0.1" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top" Width="126"/>
