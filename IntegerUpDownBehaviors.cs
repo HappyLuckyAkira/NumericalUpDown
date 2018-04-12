@@ -58,7 +58,8 @@ namespace NumericalUpDownSample
             //var textBox = integerUpDown.FindName("PART_TextBox") as WatermarkTextBox;
             if (null != textBox)
             {
-                InputMethod.SetIsInputMethodSuspended(textBox, true);
+                //InputMethod.SetIsInputMethodSuspended(textBox, true);
+                InputMethod.SetIsInputMethodEnabled(textBox, false);
             }
         }
 
