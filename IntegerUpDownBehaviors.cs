@@ -33,7 +33,6 @@ namespace NumericalUpDownSample
         private static void IsNumericChanged
             (DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-
             var integerUpDown = sender as IntegerUpDown;
             if (integerUpDown == null) return;
 
@@ -42,8 +41,8 @@ namespace NumericalUpDownSample
             DataObject.RemovePastingHandler(integerUpDown, textbox_PastingHandler);
             integerUpDown.Loaded -= IntegerUpDown_Loaded;
             
-            var newValue = (bool)e.NewValue;
-            if (newValue)
+            var isNumeric = (bool)e.NewValue;
+            if (isNumeric)
             {
                 integerUpDown.Loaded += IntegerUpDown_Loaded;
                 integerUpDown.PreviewTextInput += OnPreviewTextInput;
@@ -55,10 +54,8 @@ namespace NumericalUpDownSample
         {
             var integerUpDown = sender as IntegerUpDown;
             var textBox = integerUpDown.Template.FindName("PART_TextBox", integerUpDown) as WatermarkTextBox;
-            //var textBox = integerUpDown.FindName("PART_TextBox") as WatermarkTextBox;
             if (null != textBox)
             {
-                //InputMethod.SetIsInputMethodSuspended(textBox, true);
                 InputMethod.SetIsInputMethodEnabled(textBox, false);
             }
         }
