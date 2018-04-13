@@ -61,6 +61,11 @@ namespace NumericalUpDownSample
             }
         }
 
+        //途中段階で、どこまで許可するか
+        //入力中は緩めにしたいが、小数点とかはひとつにしたい。
+        //ただ、ロケールにより、,と.両方を許可する必要あり
+        //TryParseだと途中経過が、.だけに何故かなるので難しい
+        
         private static void DoubleUpDown_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             if (!IsAllNumber(e.Text))
@@ -71,7 +76,9 @@ namespace NumericalUpDownSample
 
         private static bool IsAllNumber(string text)
         {
-            return !text.Any(c => !char.IsNumber(c));
+            //return !text.Any(c => !char.IsNumber(c));
+            double todouble;
+            return Double.TryParse(text, out todouble);
         }
         //ペーストに対応するために必要
         private static void textbox_PastingHandler(object sender, DataObjectPastingEventArgs e)

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumericalUpDownSample", "NumericalUpDownSample.csproj", "{48220C8F-0668-4792-8BFD-7BB080B0F32F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumericalUpDownTest", "NumericalUpDownTest\NumericalUpDownTest.csproj", "{9315C2EE-79D4-4516-809F-1C9ED5EB81A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{48220C8F-0668-4792-8BFD-7BB080B0F32F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48220C8F-0668-4792-8BFD-7BB080B0F32F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48220C8F-0668-4792-8BFD-7BB080B0F32F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9315C2EE-79D4-4516-809F-1C9ED5EB81A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9315C2EE-79D4-4516-809F-1C9ED5EB81A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9315C2EE-79D4-4516-809F-1C9ED5EB81A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9315C2EE-79D4-4516-809F-1C9ED5EB81A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
