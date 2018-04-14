@@ -1,6 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
 using NumericalUpDownSample;
+using System.Globalization;
+
 namespace NumericalUpDownTest
 {
     [TestFixture]
@@ -28,6 +30,12 @@ namespace NumericalUpDownTest
         {
             var doubleInvalidaterule = new DoubleValidateRule();
             Assert.That(doubleValidateRule_.IsCanInputKey("A"), Is.EqualTo(false));
+        }
+        [Test]
+        public void dotCanInputInJPCulture()
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
+            Assert.That(doubleValidateRule_.IsCanInputKey("."), Is.EqualTo(true));
         }
     }
 

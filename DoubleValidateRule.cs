@@ -19,6 +19,10 @@ namespace NumericalUpDownSample
             {
                 return true;
             }
+            if (inputkey == ".")
+            {
+                return true;
+            }
             return false;
         }
     }
