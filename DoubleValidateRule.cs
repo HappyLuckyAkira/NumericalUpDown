@@ -10,7 +10,16 @@ namespace NumericalUpDownSample
     {
         public bool IsCanInputKey(string inputkey)
         {
-            return true;
+            string InputEnableKey = "0123456789";
+            //private static void DoubleUpDown_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+            //だと、deleteキーや、BSキーが入力されても呼び出されないので不要
+            //Preview Input　
+            //char.IsNumber
+            if (InputEnableKey.Contains(inputkey))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
