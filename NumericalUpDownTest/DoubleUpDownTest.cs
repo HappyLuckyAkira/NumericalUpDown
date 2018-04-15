@@ -37,6 +37,12 @@ namespace NumericalUpDownTest
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
             Assert.That(doubleValidateRule_.IsCanInputKey("."), Is.EqualTo(true));
         }
+        [Test]
+        public void dotCanNotInputInFRCulture()
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
+            Assert.That(doubleValidateRule_.IsCanInputKey("."), Is.EqualTo(false));
+        }
     }
 
 }
