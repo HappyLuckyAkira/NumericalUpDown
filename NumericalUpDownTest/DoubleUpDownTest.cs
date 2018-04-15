@@ -38,10 +38,29 @@ namespace NumericalUpDownTest
             Assert.That(doubleValidateRule_.IsCanInputKey("."), Is.EqualTo(true));
         }
         [Test]
+        public void CommaCanInputInJPCulture()
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
+            Assert.That(doubleValidateRule_.IsCanInputKey(","), Is.EqualTo(false));
+        }
+        [Test]
         public void dotCanNotInputInFRCulture()
         {
             CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
             Assert.That(doubleValidateRule_.IsCanInputKey("."), Is.EqualTo(false));
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
+        }
+        [Test]
+        public void CommaCanInputInFRCulture()
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
+            Assert.That(doubleValidateRule_.IsCanInputKey(","), Is.EqualTo(true));
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
+        }
+        [Test]
+        public void minusCanInputInFRCulture()
+        {
+            Assert.That(doubleValidateRule_.IsCanInputKey("-"), Is.EqualTo(true));
         }
     }
 
