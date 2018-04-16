@@ -58,9 +58,27 @@ namespace NumericalUpDownTest
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
         }
         [Test]
-        public void minusCanInputInFRCulture()
+        public void minusCanInput()
         {
             Assert.That(doubleValidateRule_.IsCanInputKey("-"), Is.EqualTo(true));
+        }
+        [Test]
+        public void CanInputStringInJpCulture([Values("1.0","-","-10.00",".1","100.123456789")]string inputstring)
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
+            Assert.That(doubleValidateRule_.IsCanInputString(inputstring), Is.EqualTo(true));
+        }
+        [Test]
+        public void CommaCanInputStringInFRCulture()
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
+            Assert.That(doubleValidateRule_.IsCanInputString(","), Is.EqualTo(true));
+            CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
+        }
+        [Test]
+        public void CanNotInputString([Values("1.0.","--")]string inputstring)
+        {
+            Assert.That(doubleValidateRule_.IsCanInputString(inputstring), Is.EqualTo(false));
         }
     }
 

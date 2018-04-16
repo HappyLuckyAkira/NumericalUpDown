@@ -29,5 +29,18 @@ namespace NumericalUpDownSample
             }
             return false;
         }
+
+        public bool IsCanInputString(string inputstring)
+        {
+            if (inputstring == "-") return true;
+            NumberFormatInfo nfi = CultureInfo.CurrentCulture.NumberFormat;
+            if (inputstring == nfi.CurrencyDecimalSeparator)
+            {
+                return true;
+            }
+
+            double todouble;
+            return Double.TryParse(inputstring, out todouble);
+        }
     }
 }
