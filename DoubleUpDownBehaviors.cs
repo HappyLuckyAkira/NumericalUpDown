@@ -71,12 +71,28 @@ namespace NumericalUpDownSample
             if (!DoubleValidationRule.IsCanInputKey(e.Text))
             {
                 e.Handled = true;
+                return;
+            }
+            var doubleUpDown = sender as DoubleUpDown;
+            var textBox = doubleUpDown.Template.FindName("PART_TextBox",doubleUpDown) as WatermarkTextBox;
+            if (textBox == null)
+            {
+                return;
+            }
+            var changedText =
+                textBox.Text
+                .Remove(textBox.SelectionStart, textBox.SelectionLength)
+                .Insert(textBox.SelectionStart, e.Text)
+                ;
+            
+            if (!DoubleValidationRule.IsCanInputString(changedText))
+            {
+                e.Handled = true;
             }
         }
 
         private static bool IsAllNumber(string text)
         {
-            //return !text.Any(c => !char.IsNumber(c));
             double todouble;
             return Double.TryParse(text, out todouble);
         }
@@ -85,8 +101,19 @@ namespace NumericalUpDownSample
         {
             if (e.DataObject.GetDataPresent(DataFormats.Text))
             {
-                string text = Convert.ToString(e.DataObject.GetData(DataFormats.Text));
-                if (!IsAllNumber(text))
+                string pasted_text = Convert.ToString(e.DataObject.GetData(DataFormats.Text));
+                if (pasted_text == null)
+                {
+                    e.CancelCommand();
+                }
+                var doubleUpDown = sender as DoubleUpDown;
+                var textBox = doubleUpDown.Template.FindName("PART_TextBox",doubleUpDown) as WatermarkTextBox;
+                var changedText =
+                    textBox.Text
+                    .Remove(textBox.SelectionStart, textBox.SelectionLength)
+                    .Insert(textBox.SelectionStart, pasted_text);
+
+                if (!DoubleValidationRule.IsCanInputString(changedText))
                 {
                     e.CancelCommand();
                 }
