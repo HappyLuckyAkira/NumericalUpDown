@@ -91,11 +91,6 @@ namespace NumericalUpDownSample
             }
         }
 
-        private static bool IsAllNumber(string text)
-        {
-            double todouble;
-            return Double.TryParse(text, out todouble);
-        }
         //ペーストに対応するために必要
         private static void textbox_PastingHandler(object sender, DataObjectPastingEventArgs e)
         {
