@@ -8,7 +8,6 @@ namespace NumericalUpDownTest
     [TestFixture]
     public class DoubleUpDownTest
     {
-        private DoubleValidateRule doubleValidateRule_;
         [SetUp]
         public void SetUp()
         {
