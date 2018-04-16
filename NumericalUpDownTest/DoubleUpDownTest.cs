@@ -12,73 +12,71 @@ namespace NumericalUpDownTest
         [SetUp]
         public void SetUp()
         {
-            doubleValidateRule_ = new DoubleValidateRule();
         }
 
         [TearDown]
         public void TearDown()
         {
-            doubleValidateRule_ = null;
         }
         [Test]
         public void Number1CanInput()
         {
-            Assert.That(doubleValidateRule_.IsCanInputKey("1"));
+            Assert.That(DoubleValidateRule.IsCanInputKey("1"));
         }
         [Test]
         public void ACanNotInput()
         {
             var doubleInvalidaterule = new DoubleValidateRule();
-            Assert.That(doubleValidateRule_.IsCanInputKey("A"), Is.EqualTo(false));
+            Assert.That(DoubleValidateRule.IsCanInputKey("A"), Is.EqualTo(false));
         }
         [Test]
         public void dotCanInputInJPCulture()
         {
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
-            Assert.That(doubleValidateRule_.IsCanInputKey("."), Is.EqualTo(true));
+            Assert.That(DoubleValidateRule.IsCanInputKey("."), Is.EqualTo(true));
         }
         [Test]
         public void CommaCanInputInJPCulture()
         {
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
-            Assert.That(doubleValidateRule_.IsCanInputKey(","), Is.EqualTo(false));
+            Assert.That(DoubleValidateRule.IsCanInputKey(","), Is.EqualTo(false));
         }
         [Test]
         public void dotCanNotInputInFRCulture()
         {
             CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
-            Assert.That(doubleValidateRule_.IsCanInputKey("."), Is.EqualTo(false));
+            Assert.That(DoubleValidateRule.IsCanInputKey("."), Is.EqualTo(false));
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
         }
         [Test]
         public void CommaCanInputInFRCulture()
         {
             CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
-            Assert.That(doubleValidateRule_.IsCanInputKey(","), Is.EqualTo(true));
+            Assert.That(DoubleValidateRule.IsCanInputKey(","), Is.EqualTo(true));
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
         }
         [Test]
         public void minusCanInput()
         {
-            Assert.That(doubleValidateRule_.IsCanInputKey("-"), Is.EqualTo(true));
+            Assert.That(DoubleValidateRule.IsCanInputKey("-"), Is.EqualTo(true));
         }
         [Test]
         public void CanInputStringInJpCulture([Values("1.0","-","-10.00",".1","100.123456789")]string inputstring)
         {
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
-            Assert.That(doubleValidateRule_.IsCanInputString(inputstring), Is.EqualTo(true));
+            Assert.That(DoubleValidateRule.IsCanInputString(inputstring), Is.EqualTo(true));
         }
         [Test]
         public void CommaCanInputStringInFRCulture()
         {
             CultureInfo.CurrentCulture = new CultureInfo("fr-FR");
-            Assert.That(doubleValidateRule_.IsCanInputString(","), Is.EqualTo(true));
+            Assert.That(DoubleValidateRule.IsCanInputString(","), Is.EqualTo(true));
             CultureInfo.CurrentCulture = new CultureInfo("ja-JP");
         }
         [Test]
         public void CanNotInputString([Values("1.0.","--")]string inputstring)
         {
-            Assert.That(doubleValidateRule_.IsCanInputString(inputstring), Is.EqualTo(false));
+            Assert.That(DoubleValidateRule.IsCanInputString(inputstring), Is.EqualTo(false));
         }
     }
 

@@ -9,7 +9,7 @@ namespace NumericalUpDownSample
 {
     public class DoubleValidateRule
     {
-        public bool IsCanInputKey(string inputkey)
+        public static bool IsCanInputKey(string inputkey)
         {
             string InputEnableKey = "0123456789-";
             //private static void DoubleUpDown_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
@@ -30,7 +30,7 @@ namespace NumericalUpDownSample
             return false;
         }
 
-        public bool IsCanInputString(string inputstring)
+        public static bool IsCanInputString(string inputstring)
         {
             if (inputstring == "-") return true;
             NumberFormatInfo nfi = CultureInfo.CurrentCulture.NumberFormat;
