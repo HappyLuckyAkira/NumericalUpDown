@@ -68,7 +68,7 @@ namespace NumericalUpDownSample
         
         private static void DoubleUpDown_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            if (!IsAllNumber(e.Text))
+            if (!DoubleValidationRule.IsCanInputKey(e.Text))
             {
                 e.Handled = true;
             }

@@ -81,7 +81,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DoubleUpDownBehaviors.cs" />
-    <Compile Include="DoubleValidateRule.cs" />
+    <Compile Include="DoubleValidationRule.cs" />
     <Compile Include="IntegerUpDownBehaviors.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
