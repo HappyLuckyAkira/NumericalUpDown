@@ -61,9 +61,31 @@ namespace NumericalUpDownSample
             }
         }
 
+        //途中段階で、どこまで許可するか
+        //入力中は緩めにしたいが、小数点とかはひとつにしたい。
+        //ただ、ロケールにより、,と.両方を許可する必要あり
+        //TryParseだと途中経過が、.だけに何故かなるので難しい
+        
         private static void DoubleUpDown_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            if (!IsAllNumber(e.Text))
+            if (!DoubleValidationRule.IsCanInputKey(e.Text))
+            {
+                e.Handled = true;
+                return;
+            }
+            var doubleUpDown = sender as DoubleUpDown;
+            var textBox = doubleUpDown.Template.FindName("PART_TextBox",doubleUpDown) as WatermarkTextBox;
+            if (textBox == null)
+            {
+                return;
+            }
+            var changedText =
+                textBox.Text
+                .Remove(textBox.SelectionStart, textBox.SelectionLength)
+                .Insert(textBox.SelectionStart, e.Text)
+                ;
+            
+            if (!DoubleValidationRule.IsCanInputString(changedText))
             {
                 e.Handled = true;
             }
@@ -71,15 +93,27 @@ namespace NumericalUpDownSample
 
         private static bool IsAllNumber(string text)
         {
-            return !text.Any(c => !char.IsNumber(c));
+            double todouble;
+            return Double.TryParse(text, out todouble);
         }
         //ペーストに対応するために必要
         private static void textbox_PastingHandler(object sender, DataObjectPastingEventArgs e)
         {
             if (e.DataObject.GetDataPresent(DataFormats.Text))
             {
-                string text = Convert.ToString(e.DataObject.GetData(DataFormats.Text));
-                if (!IsAllNumber(text))
+                string pasted_text = Convert.ToString(e.DataObject.GetData(DataFormats.Text));
+                if (pasted_text == null)
+                {
+                    e.CancelCommand();
+                }
+                var doubleUpDown = sender as DoubleUpDown;
+                var textBox = doubleUpDown.Template.FindName("PART_TextBox",doubleUpDown) as WatermarkTextBox;
+                var changedText =
+                    textBox.Text
+                    .Remove(textBox.SelectionStart, textBox.SelectionLength)
+                    .Insert(textBox.SelectionStart, pasted_text);
+
+                if (!DoubleValidationRule.IsCanInputString(changedText))
                 {
                     e.CancelCommand();
                 }
