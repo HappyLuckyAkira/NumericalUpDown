@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NumericalUpDownSample
 {
-    public class DoubleValidateRule
+    public class DoubleValidationRule
     {
         public static bool IsCanInputKey(string inputkey)
         {
